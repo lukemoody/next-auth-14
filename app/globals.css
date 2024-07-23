@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Global styles for tese specific elements using Tailwind */
+@layer base {
+  h1 {
+    @apply font-bold text-3xl;
+  }
+
+  a {
+    @apply underline font-bold;
+  }
+}
