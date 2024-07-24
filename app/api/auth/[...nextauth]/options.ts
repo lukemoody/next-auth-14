@@ -10,9 +10,6 @@ const options: NextAuthOptions = {
       profile(profile) {
         console.log("Profile GitHub", profile);
         let userRole = "GitHub User";
-        // if (profile?.email == "luke@thirty3digital.co.uk") {
-        //   userRole = "admin";
-        // }
 
         return {
           ...profile,
@@ -27,7 +24,7 @@ const options: NextAuthOptions = {
         console.log("Profile Google", profile);
         let userRole = "Google User";
         if (profile?.email == "luke@thirty3digital.co.uk") {
-          userRole = "admin";
+          userRole = "Admin";
         }
 
         return {
