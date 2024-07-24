@@ -10,9 +10,9 @@ const options: NextAuthOptions = {
       profile(profile) {
         console.log("Profile GitHub", profile);
         let userRole = "GitHub User";
-        if (profile?.email == "luke@thirty3digital.co.uk") {
-          userRole = "admin";
-        }
+        // if (profile?.email == "luke@thirty3digital.co.uk") {
+        //   userRole = "admin";
+        // }
 
         return {
           ...profile,
@@ -33,6 +33,7 @@ const options: NextAuthOptions = {
         return {
           ...profile,
           role: userRole,
+          id: profile.sub,
         };
       },
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -47,10 +48,11 @@ const options: NextAuthOptions = {
       }
       return token;
     },
-    session({ session, token }) {
+    async session({ session, token }) {
       if (session.user) {
         session.user.role = token.role || "USER";
       }
+      return session;
     },
   },
 };
