@@ -4,7 +4,7 @@ import options from "@/app/api/auth/[...nextauth]/options";
 
 const Nav = async () => {
   const session = await getServerSession(options);
-  console.log("session", session);
+  //   console.log("session", session);
 
   return (
     <header className="bg-gray-600 text-gray-100">
@@ -12,7 +12,9 @@ const Nav = async () => {
         <div>My Site</div>
         <div className="flex gap-10">
           <Link href="/">Home</Link>
-          <Link href="/CreateUser">Create user</Link>
+          {session?.user.role == "ADMIN" && (
+            <Link href="/CreateUser">Create user</Link>
+          )}
           <Link href="/ClientMember">Client Member</Link>
           <Link href="/Member">Member</Link>
           <Link href="/Public">Public</Link>
