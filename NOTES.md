@@ -41,3 +41,19 @@ To setup GitHub as an auth provider, go to `https://github.com/settings/develope
 - Open this up, open schema, public, tables, right click User `scripts/SELECT scripts`
 - This will open up and show us the query to get User data for our field set in projects schema in `schema.prisma`
 - Added a `db.ts` file in types folder to create a hook into our prisma database for submitting data
+
+## Production
+
+- Push all work to GIT
+- Setup hosting on Vercel
+- Setup Prisma DB on vercel. Copy new PROD `DATABASE_URL`
+- Make new .env.prod in codebase and update `DATABASE_URL` with new value
+- Generate new `NEXTAUTH_SECRET` using `openssl rand -base64 32` and update `.env.prod`.
+- Go to `https://github.com/settings/developers` and create new OAuth for PROD and update relevant vars in `.env.prod`.
+- Do the same for Goole - `https://console.cloud.google.com/apis/credentials`, setup a new PROD `OAth Client ID` under the account first created (should have two sets of API creds for the project).
+- Copy client ID and secret into `.env.prod` and update Vercel.
+
+## Production Database Notes
+
+- You can view PROD DB data by going to your project in Vercel > Storage > YOUR_DB_PROJECT_NAME and going to the section that says Data
+- You can click to view tables and data stored in the table will be shown
